@@ -7,6 +7,16 @@ summary: Learn about the FAQs related to TiDB SQL.
 
 This document summarizes the FAQs related to SQL operations in TiDB.
 
+## The order of records for a SELECT statement without ORDER BY clause is not as same as MySQL
+
+It's not a bug. The default order of records depends on various situation without any guarantee of consistency. 
+
+The relevant text in the [SQL-92](http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt) spec is
+
+> If an <order by clause> is not specified, then the table specified by the <cursor specification> is T and the ordering of rows in T is implementation-dependent.
+    
+If a query is intended to rely on this order for anything, a desired order using `ORDER BY` should be specified.
+
 ## What are the MySQL variables that TiDB is compatible with?
 
 See [System Variables](/system-variables.md).
